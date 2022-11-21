@@ -2,10 +2,12 @@
   "name": "vue-project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://sejooo1217.github.io/vuejs_practice",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy" : "gh-pages -d build"
   },
   "dependencies": {
     "core-js": "^3.8.3",
