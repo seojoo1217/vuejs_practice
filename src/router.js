@@ -1,9 +1,16 @@
  import MainPage from './components/page/MainPage.vue';
-import {createWebHistory,createRouter} from 'vue-router';
+ import AboutPage from './components/page/AboutPage.vue';
+ import InfoPage from './components/page/InfoPage.vue';
+
+ import {createWebHistory,createRouter} from 'vue-router';
  
+
  
 const routes =[
-    {path : '/test', name : 'main routes', component:MainPage}
+    {path : '/main', name : 'main routes', component:MainPage},
+    {path : '/about', name : 'about routes', component:AboutPage},
+    {path : '/info', name : 'info routes', component:InfoPage}
+
 ]
   
 const router = createRouter ({
