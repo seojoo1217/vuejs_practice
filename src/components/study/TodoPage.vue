@@ -11,6 +11,7 @@ export default {
   },
   methods: {
     addItem(e) {
+      alert("Add event");
       this.itemArr.push({ title: e.target.value });
     },
   },
@@ -60,12 +61,15 @@ input[type="text"] {
   border-radius: 3px;
   border: 1px solid rgb(173, 173, 173);
 }
+button {
+  outline: none;
+}
 
 .todo-container {
   width: 100%;
   max-width: 50rem;
   height: 20rem;
-  padding: 3px 10px;
+  padding: 10px;
   background: skyblue;
   display: flex;
   flex-direction: column;

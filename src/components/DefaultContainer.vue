@@ -35,7 +35,12 @@ export default {
       <div class="sidebar">
         <div v-for="(category, index) in indexArray" :key="index">
           <router-link v-bind:to="category.path">
-            <div class="side-item">{{ category.title }}</div>
+            <div
+              class="side-item"
+              :class="{ active: category.path === $route.path }"
+            >
+              {{ category.title }}
+            </div>
           </router-link>
         </div>
       </div>
@@ -65,13 +70,20 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background: #bdbdbd;
+  background: #252525;
+
   border-right: 1px solid white;
 }
 .side-item {
   font-size: 1rem;
   padding: 10px;
   background: #252525;
+}
+
+.active {
+  font-size: 1rem;
+  padding: 10px;
+  background: #000000;
 }
 
 .side-item:hover {
