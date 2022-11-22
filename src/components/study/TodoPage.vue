@@ -6,13 +6,15 @@ export default {
   },
   data() {
     return {
-      itemArr: [{ title: "test" }],
+      itemArr: [],
+      newtodo: "",
     };
   },
   methods: {
     addItem() {
-      let length = this.itemArr.length;
-      this.itemArr.push({ title: length });
+      // let length = this.itemArr.length;
+      this.itemArr.push({ title: this.newtodo });
+      this.newtodo = "";
     },
   },
 };
@@ -27,7 +29,7 @@ export default {
         </div>
       </div>
       <div class="footer">
-        <input type="text" placeholder="입력하세요." />
+        <input type="text" placeholder="입력하세요." v-model="newtodo" />
         <button @click="addItem">Add</button>
       </div>
     </div>
@@ -76,6 +78,11 @@ input[type="text"] {
 }
 button {
   outline: none;
+  border: none;
+  width: 100px;
+  height: 20px;
+  border-radius: 20px;
+  background: rgb(128, 183, 255);
 }
 
 .todo-container {
