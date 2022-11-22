@@ -1,7 +1,7 @@
 import TodoPage from "./components/study/TodoPage.vue";
 import RoutesPage from "./components/study/RoutesPage.vue";
 import { createWebHistory, createRouter } from "vue-router";
-
+//
 const routes = [
   {
     path: "/vuejs_practice",
