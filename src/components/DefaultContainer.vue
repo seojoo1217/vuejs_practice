@@ -7,14 +7,14 @@ export default {
   data() {
     return {
       indexArray: [
-        { path: "/study/intro", title: "Vue.js? /MVVM 패턴" },
-        { path: "/study/instance", title: "Vue Instance" },
-        { path: "/study/components", title: "Vue Components" },
-        { path: "/study/routes", title: "Vue Routes" },
-        { path: "/study/template", title: "Vue Template" },
-        { path: "/study/loader", title: "Vue Loader" },
-        { path: "/study/cli", title: "Vue CLI" },
-        { path: "/study/file", title: "Single File Component" },
+        { path: "/todo", title: "TODOLIST" },
+        { path: "/instance", title: "Vue Instance" },
+        { path: "/components", title: "Vue Components" },
+        { path: "/routes", title: "Vue Routes" },
+        { path: "/template", title: "Vue Template" },
+        { path: "/loader", title: "Vue Loader" },
+        { path: "/cli", title: "Vue CLI" },
+        { path: "/file", title: "Single File Component" },
       ],
     };
   },
@@ -26,9 +26,9 @@ export default {
     <div class="header">
       <router-link to="/main">Vue.js 학습</router-link>
       <div class="menu">
-        <router-link to="/home">HOME</router-link>
+        <!-- <router-link to="/home">HOME</router-link>
         <router-link to="/about">ABOUT</router-link>
-        <router-link to="/info">INFO</router-link>
+        <router-link to="/info">INFO</router-link> -->
       </div>
     </div>
     <div class="second-container">
@@ -39,38 +39,45 @@ export default {
           </router-link>
         </div>
       </div>
-      {{ $route.path }}
-
-      <router-view></router-view>
+      <div class="view">
+        <div class="header">
+          {{ indexArray.find((item) => item.path === $route.path)?.title }}
+        </div>
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.view {
+  width: 100%;
+}
 .container {
   width: 100%;
   height: 100%;
-  overflow: hidden;
 }
 .sidebar {
   width: 100%;
-  max-width: 20rem;
+  max-width: 13rem;
   text-align: left;
   display: flex;
   flex-direction: column;
   height: 100%;
   background: #bdbdbd;
+  border-right: 1px solid white;
 }
 .side-item {
-  font-size: 1.1rem;
+  font-size: 1rem;
   padding: 10px;
+  background: #252525;
 }
 
 .side-item:hover {
-  background: #252525;
   cursor: pointer;
   color: white;
+  background-color: #111010;
 }
 
 a {
