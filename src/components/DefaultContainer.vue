@@ -7,14 +7,14 @@ export default {
   data() {
     return {
       indexArray: [
-        { path: "/", title: "TODOLIST" },
-        { path: "/instance", title: "Vue Instance" },
-        { path: "/components", title: "Vue Components" },
-        { path: "/routes", title: "Vue Routes" },
-        { path: "/template", title: "Vue Template" },
-        { path: "/loader", title: "Vue Loader" },
-        { path: "/cli", title: "Vue CLI" },
-        { path: "/file", title: "Single File Component" },
+        { path: "/vuejs_practice", title: "TODOLIST" },
+        { path: "/vuejs_practice/instance", title: "Vue Instance" },
+        { path: "/vuejs_practice/components", title: "Vue Components" },
+        { path: "/vuejs_practice/routes", title: "Vue Routes" },
+        { path: "/vuejs_practice/template", title: "Vue Template" },
+        { path: "/vuejs_practice/loader", title: "Vue Loader" },
+        { path: "/vuejs_practice/cli", title: "Vue CLI" },
+        { path: "/vuejs_practice/file", title: "Single File Component" },
       ],
     };
   },
