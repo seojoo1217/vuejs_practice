@@ -7,7 +7,7 @@ export default {
   data() {
     return {
       indexArray: [
-        { path: "/todo", title: "TODOLIST" },
+        { path: "/", title: "TODOLIST" },
         { path: "/instance", title: "Vue Instance" },
         { path: "/components", title: "Vue Components" },
         { path: "/routes", title: "Vue Routes" },
@@ -58,9 +58,10 @@ export default {
 <style scoped>
 .view {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .container {
-  width: 100%;
   height: 100%;
 }
 .sidebar {
@@ -115,5 +116,7 @@ a {
   padding: 10px 20px;
   color: white;
   border-bottom: 1px solid white;
+  height: 10%;
+  max-height: 20px;
 }
 </style>

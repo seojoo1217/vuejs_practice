@@ -6,13 +6,13 @@ export default {
   },
   data() {
     return {
-      itemArr: [],
+      itemArr: [{ title: "test" }],
     };
   },
   methods: {
-    addItem(e) {
-      alert("Add event");
-      this.itemArr.push({ title: e.target.value });
+    addItem() {
+      let length = this.itemArr.length;
+      this.itemArr.push({ title: length });
     },
   },
 };
@@ -37,7 +37,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container {
-  height: 100%;
   padding: 3rem;
   display: flex;
   justify-content: center;
@@ -48,9 +47,23 @@ export default {
   padding: 10px;
 }
 
-.list-container {
+.list-item {
   width: 100%;
+  height: 30px;
+  background: white;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-container {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  overflow: auto;
   background: rgba(35, 35, 63, 0.267);
 }
 
@@ -70,7 +83,7 @@ button {
   max-width: 50rem;
   height: 20rem;
   padding: 10px;
-  background: skyblue;
+  background: rgb(104, 104, 104);
   display: flex;
   flex-direction: column;
 }
