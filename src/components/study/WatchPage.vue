@@ -7,28 +7,13 @@ export default {
     };
   },
   methods: {},
-  computed: {
-    // message: {
-    //   get: function () {
-    //     console.log("test");
-    //     return message;
-    //   },
-    // },
-  },
+  computed: {},
 };
 </script>
 
 <template>
-  <div class="container">WatchPage</div>
-  <!-- {{ message }} -->
+  <div>WatchPage</div>
 </template>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.container {
-  padding: 3rem;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-</style>
+<style scoped></style>

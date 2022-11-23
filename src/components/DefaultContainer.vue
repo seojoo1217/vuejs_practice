@@ -1,6 +1,8 @@
 <script>
-//
+import BodyPage from "./page/BodyPage.vue";
+
 export default {
+  components: { BodyPage },
   name: "DefaultContainer",
   props: {
     msg: String,
@@ -49,7 +51,9 @@ export default {
         <div class="header">
           {{ indexArray.find((item) => item.path === $route.path)?.title }}
         </div>
-        <router-view></router-view>
+        <div class="container">
+          <BodyPage />
+        </div>
       </div>
     </div>
   </div>
