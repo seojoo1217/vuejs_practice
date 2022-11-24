@@ -30,21 +30,22 @@ export default {
   },
   methods: {
     addItem() {
-      // let length = this.itemArr.length;
-      // if (this.newtodo.length === 0) {
-      //   alert("작성된 문구가 없습니다.");
-      //   return false;
-      // }
-      // dispatch;
-      // this.itemArr.push({ title: this.newtodo });
+      if (this.newtodo.length === 0) {
+        alert("작성된 문구가 없습니다.");
+        return false;
+      }
       this.$store.commit("TODO/addItem", this.newtodo);
       this.newtodo = "";
     },
-    cancel(param) {
+    delItem(param) {
       // let filterArr = this.itemArr.filter((item, index) => index !== param);
       // console.log(filterArr);
       // this.itemArr = filterArr;
       this.$store.commit("TODO/removeItem", param);
+    },
+    updateItem(param) {
+      console.log("param", param);
+      this.$store.commit("TODO/updateItem", param);
     },
   },
 };
@@ -57,8 +58,12 @@ export default {
       <div class="list-container">
         <div v-for="(item, index) in list" :key="index">
           <div class="list-item">
-            <span class="cancel" @click="cancel(index)">X</span>
-            <input type="text" :value="item.title" />
+            <span class="cancel" @click="delItem(index)">X</span>
+            <input
+              type="text"
+              :value="item.title"
+              v-on:change="updateItem({ index, text: $event.target.value })"
+            />
           </div>
         </div>
         <div v-if="itemArr.length === 0" class="nodata">데이터가 없습니다.</div>
