@@ -62,7 +62,20 @@ export default {
             <input
               type="text"
               :value="item.title"
-              v-on:change="updateItem({ index, text: $event.target.value })"
+              v-on:change="
+                updateItem({ index, key: 'title', value: $event.target.value })
+              "
+            />
+            <input
+              type="checkbox"
+              :checked="item.checked"
+              v-on:change="
+                updateItem({
+                  index,
+                  key: 'checked',
+                  value: $event.target.checked,
+                })
+              "
             />
           </div>
         </div>
@@ -86,6 +99,10 @@ export default {
 .container {
 }
 
+input[type="checkbox"] {
+  width: 25px;
+  height: 25px;
+}
 .nodata {
   color: rgba(0, 0, 0, 0.651);
   width: 100%;

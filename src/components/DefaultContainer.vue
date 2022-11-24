@@ -11,7 +11,7 @@ export default {
     return {
       indexArray: [
         { path: "/vuejs_practice/", title: "TODOLIST" },
-        { path: "/vuejs_practice/watch", title: "Watch" },
+        { path: "/vuejs_practice/watch", title: "Computed/Watch" },
         { path: "/vuejs_practice/components", title: "Vue Components" },
         { path: "/vuejs_practice/routes", title: "Vue Routes" },
         { path: "/vuejs_practice/template", title: "Vue Template" },

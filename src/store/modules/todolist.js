@@ -18,7 +18,7 @@ const actions = {
 const mutations = {
   //상태 변경시 전역 상태 update 해주는 setter
   addItem(state, todoItem) {
-    state.list.push({ title: todoItem });
+    state.list.push({ title: todoItem, checked: false });
   },
   removeItem(state, param) {
     let resultList = state.list.filter((item, index) => index !== param);
@@ -26,7 +26,7 @@ const mutations = {
   },
   updateItem(state, param) {
     let index = state.list.findIndex((item, index) => index === param.index);
-    state.list[index].title = param.text;
+    state.list[index][param.key] = param.value;
   },
 };
 
