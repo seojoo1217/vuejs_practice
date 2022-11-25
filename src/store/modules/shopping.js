@@ -15,7 +15,7 @@ const getters = {
     return state.productList;
   },
 };
-
+//test
 const actions = {
   //공개적 처리 혹은 복잡한 처리를 행할 때 public한 method
   addList({ commit }, name) {
