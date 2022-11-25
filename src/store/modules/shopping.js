@@ -1,13 +1,13 @@
 const state = {
   productList: [
-    { key: "A", title: "자켓", price: 1400 },
-    { key: "B", title: "바지", price: 3200 },
-    { key: "C", title: "옷", price: 1500 },
-    { key: "D", title: "스웨터", price: 2000 },
-    { key: "E", title: "니트", price: 2000 },
-    { key: "F", title: "목폴라", price: 2000 },
+    { key: "A", cnt: 0, title: "자켓", price: 1400 },
+    { key: "B", cnt: 0, title: "바지", price: 3200 },
+    { key: "C", cnt: 0, title: "옷", price: 1500 },
+    { key: "D", cnt: 0, title: "스웨터", price: 2000 },
+    { key: "E", cnt: 0, title: "니트", price: 2000 },
+    { key: "F", cnt: 0, title: "목폴라", price: 2000 },
   ],
-  basket: [],
+  basketList: [],
 };
 
 const getters = {
@@ -25,8 +25,8 @@ const actions = {
 
 const mutations = {
   //상태 변경시 전역 상태 update 해주는 setter
-  addItem(state, todoItem) {
-    state.productList.push({ title: todoItem, checked: false });
+  addBasket(state, selectList) {
+    state.basketList = selectList;
   },
   removeItem(state, param) {
     let resultList = state.list.filter((item, index) => index !== param);

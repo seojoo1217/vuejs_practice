@@ -4,12 +4,17 @@ import { useStore } from "vuex";
 function getProductList() {
   const store = useStore();
   const list = computed(() => store.state.SHOPPING.productList);
-  //const getter = computed(() => store.getters["todoList"]);
   return {
     list: list,
   };
 }
-
+function getBasketList() {
+  const store = useStore();
+  const basketList = computed(() => store.state.SHOPPING.basketList);
+  return {
+    basketList: basketList,
+  };
+}
 export default {
   name: "WatchPage",
   data() {
@@ -20,26 +25,34 @@ export default {
   setup() {
     return {
       ...getProductList(),
+      ...getBasketList(),
     };
   },
   methods: {
-    selectItem(indexVal) {
-      let checkList = [];
-      console.log(this.selectList.some((item) => item.key === indexVal.key));
-      if (this.selectList.some((item) => item.key === indexVal.key)) {
-        checkList = this.selectList.filter((item) => indexVal.key !== item.key);
-        console.log(checkList);
-      } else {
-        checkList = this.selectList.push(indexVal);
+    addBasket() {
+      if (this.selectList.length === 0) {
+        alert("체크된 항목이 없습니다.");
+        return false;
       }
-      return checkList;
+      this.$store.commit("SHOPPING/addBasket", this.selectList);
+      this.newtodo = "";
     },
   },
   computed: {
     totalSum() {
-      return this.selectList
+      return this.basketList
         .map(({ price }) => price)
         .reduce((a, b) => a + b, 0);
+    },
+    allSelected: {
+      //getter
+      get: function () {
+        return this.checkList.length === this.selectList.length;
+      },
+      //setter
+      set: function (e) {
+        this.selectList = e ? this.checkList : [];
+      },
     },
   },
 };
@@ -61,21 +74,38 @@ export default {
     </div> -->
     <div class="body">
       <div class="box shopping">
-        <div class="header">쇼핑 리스트</div>
+        <div class="box-header">Shopping Component</div>
         <div class="box-body">
           <div v-for="(item, index) in list" :key="index">
             <div class="list-item">
-              {{ index + 1 }} {{ item.title }}
-              <input type="checkbox" @change="selectItem(item)" />
+              <div>
+                {{ index + 1 }}
+              </div>
+
+              <div>
+                {{ item.title }}
+              </div>
+
+              <div>
+                <input
+                  type="checkbox"
+                  :id="item"
+                  :value="item"
+                  :key="index"
+                  v-model="selectList"
+                />
+              </div>
             </div>
           </div>
         </div>
-        <div class="footer"><button>장바구니 담기</button></div>
+        <div class="footer">
+          <button @click="addBasket">Add Basket</button>
+        </div>
       </div>
       <div class="box">
-        <div class="header">장바구니</div>
+        <div class="box-header">Basket Component</div>
         <div class="box-body">
-          <div v-for="(item, index) in selectList" :key="index">
+          <div v-for="(item, index) in basketList" :key="index">
             <div class="list-item">
               <div>
                 {{ index + 1 }}
@@ -84,18 +114,19 @@ export default {
                 {{ item.title }}
               </div>
               <div>
-                {{ String(item.price).toLocaleString() }}
+                {{ Number(item.price).toLocaleString() }}
               </div>
             </div>
           </div>
         </div>
         <div class="footer">
-          <button>결제</button>
-          <div>값 : {{ totalSum }}</div>
+          <button>Payment</button>
+          수량 {{ basketList.length }}
+          <div>값 : {{ Number(totalSum).toLocaleString() }}</div>
         </div>
       </div>
       <div class="box">
-        <div class="header">결제하기</div>
+        <div class="box-header">Payment Component</div>
       </div>
     </div>
   </div>
@@ -115,28 +146,60 @@ export default {
   text-align: left;
 }
 .box {
-  padding: 20px;
-  border: 1px solid pink;
+  border: 1px solid rgb(173, 173, 173);
   height: 20rem;
   width: 30rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.box-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+.box-header {
+  background: #252525;
+  padding: 10px 20px;
+  color: white;
+}
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  width: 100px;
+  border-radius: 20px;
+  padding: 10px 20px;
+  white-space: pre;
+  background: rgb(128, 183, 255);
 }
 .footer {
   display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+  align-items: center;
+  background: rgba(170, 170, 170, 0.377);
 }
 .body {
+  padding: 20px;
+  flex-wrap: wrap;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
   width: 100%;
   height: 100%;
+  gap: 20px;
 }
 .list-item {
   width: 100%;
   display: flex;
   flex: 1;
-  display: flex;
   justify-content: space-between;
 }
 </style>
