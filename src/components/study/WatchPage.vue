@@ -61,17 +61,6 @@ export default {
 
 <template>
   <div class="container">
-    <!-- <div class="header">vue.js 예제</div> -->
-    <!-- <div class="info">
-      computed/watch 두 방법의 접근방식은 서로 <b>동일</b>하다
-      <br />
-      computed = 의존하는 값이 변하는 경우 계속 실행 함수가 실행된다
-      <br />
-      <hr />
-      method = 값이 렌더링 된 값으로 유지 하고 싶으면 method
-      <br />
-      computed = 계속 캐싱하여 값을 바꿔 보여주고 싶을땐 computed
-    </div> -->
     <div class="body">
       <div class="box shopping">
         <div class="box-header">Shopping Component</div>
