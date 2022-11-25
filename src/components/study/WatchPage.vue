@@ -61,7 +61,7 @@ export default {
 
 <template>
   <div class="container">
-    <div class="header">vue.js 예제</div>
+    <!-- <div class="header">vue.js 예제</div> -->
     <!-- <div class="info">
       computed/watch 두 방법의 접근방식은 서로 <b>동일</b>하다
       <br />
