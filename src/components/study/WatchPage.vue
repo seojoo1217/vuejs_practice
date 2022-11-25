@@ -74,6 +74,7 @@ export default {
               <div>
                 {{ item.title }}
               </div>
+              <div>{{ Number(item.price).toLocaleString() }}원</div>
 
               <div>
                 <input
