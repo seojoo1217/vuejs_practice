@@ -9,7 +9,7 @@ const state = {
   ],
   basketList: [],
 };
-
+//
 const getters = {
   productList: (state) => {
     return state.productList;
