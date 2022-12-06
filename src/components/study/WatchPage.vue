@@ -70,7 +70,6 @@ export default {
               <div>
                 {{ index + 1 }}
               </div>
-
               <div>
                 {{ item.title }}
               </div>

@@ -1,14 +1,19 @@
 <template>
-  <DefaultContainer msg="Welcome to Your Vue.js App" />
+  <!-- <DefaultContainer /> -->
+  <div class="pa-container">
+    <ShoppingPageVue />
+  </div>
 </template>
 
 <script>
-import DefaultContainer from "./components/DefaultContainer.vue";
+//import DefaultContainer from "./components/DefaultContainer.vue";
+import ShoppingPageVue from "./components/shopping/page/ShoppingPage.vue";
 //
 export default {
   name: "App",
   components: {
-    DefaultContainer,
+    // DefaultContainer,
+    ShoppingPageVue,
   },
 };
 </script>
@@ -30,5 +35,13 @@ body {
   color: #2c3e50;
   width: 100%;
   height: 100%;
+}
+
+.pa-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
