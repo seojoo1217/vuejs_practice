@@ -7,6 +7,7 @@ import BodyPage from "./components/page/BodyPage.vue";
 import ContentsPage from "./components/shopping/common/Contents.vue";
 import MainPage from "./components/shopping/page/MainPage.vue";
 import { createWebHistory, createRouter } from "vue-router";
+import DetailPage from "./components/shopping/page/ProductDetailPage.vue";
 //
 const routes = [
   {
@@ -21,7 +22,10 @@ const routes = [
   {
     path: "/clone_coding",
     component: ContentsPage,
-    children: [{ path: "main", name: "mainPage", component: MainPage }],
+    children: [
+      { path: "main", name: "mainPage", component: MainPage },
+      { path: "detail", name: "detailPage", component: DetailPage },
+    ],
   },
 ];
 

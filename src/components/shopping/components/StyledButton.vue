@@ -1,10 +1,10 @@
 <template>
-  <button></button>
+  <button>test</button>
 </template>
 
 <script>
 export default {
-  name: "Button",
+  name: "styled-button",
   props: {
     type: String,
     name: String,

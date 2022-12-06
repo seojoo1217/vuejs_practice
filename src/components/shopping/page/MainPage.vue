@@ -1,6 +1,10 @@
 <script>
+import StyledCardVue from "../components/StyledCard.vue";
 export default {
   name: "ShoppingPage",
+  components: {
+    "styled-card": StyledCardVue,
+  },
   props: {
     msg: String,
   },
@@ -64,13 +68,12 @@ export default {
         </div>
       </div>
       <div class="sale-view">
-        <div
-          class="item-box"
+        <styled-card
           v-for="(shop, index) in filterShopItem"
           :key="index"
-        >
-          {{ shop.name }}
-        </div>
+          v-bind:type="1"
+          v-bind:name="shop.name"
+        />
       </div>
     </div>
   </div>
@@ -123,5 +126,6 @@ export default {
   gap: 10px;
   justify-content: flex-start;
   flex-wrap: wrap;
+  padding: 10px;
 }
 </style>
