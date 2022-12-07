@@ -1,19 +1,35 @@
 <template>
-  <button>test</button>
+  <div @click="$emit('click-button')">
+    <slot> </slot>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "styled-button",
-  props: {
-    type: String,
-    name: String,
-  },
+  name: "StyledButton",
+  props: ["title"],
 };
 </script>
 
-<style>
-button {
+<style scoped>
+div {
+  width: 100px;
+  height: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  background: rgb(255, 255, 255);
+  border: 1px solid rgb(80, 141, 255);
   outline: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+div:hover {
+  background: rgb(80, 141, 255);
+  color: white;
+  font-weight: 600;
 }
 </style>

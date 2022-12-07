@@ -24,7 +24,11 @@ const routes = [
     component: ContentsPage,
     children: [
       { path: "main", name: "mainPage", component: MainPage },
-      { path: "detail", name: "detailPage", component: DetailPage },
+      {
+        path: "detail/:id",
+        name: "detailPage",
+        component: DetailPage,
+      },
     ],
   },
 ];

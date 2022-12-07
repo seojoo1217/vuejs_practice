@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="logo item">SHOPPING</div>
+    <div class="logo item" @click="handleMove()">SHOPPING</div>
     <div class="menu">
       <div class="item">SALE</div>
       <div class="item">Clothes</div>
@@ -18,6 +18,11 @@ export default {
     type: String,
     name: String,
   },
+  methods: {
+    handleMove() {
+      this.$router.push("/vuejs_practice/main");
+    },
+  },
 };
 </script>
 
@@ -28,6 +33,7 @@ export default {
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
+  border-bottom: 1px solid lightgray;
 }
 
 .logo {

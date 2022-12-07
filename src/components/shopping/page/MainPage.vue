@@ -43,6 +43,9 @@ export default {
       this.currentSelectId = param;
       console.log(param);
     },
+    movePage(param) {
+      this.$router.push("/vuejs_practice/detail/" + param);
+    },
   },
   computed: {
     filterShopItem: function () {
@@ -73,6 +76,7 @@ export default {
           :key="index"
           v-bind:type="1"
           v-bind:name="shop.name"
+          @click="movePage(shop.id)"
         />
       </div>
     </div>
