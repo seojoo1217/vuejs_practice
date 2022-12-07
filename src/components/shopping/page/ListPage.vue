@@ -1,74 +1,75 @@
 <template>
-  <div>LISTPAGE</div>
+  <div class="container">
+    <div class="filter">인기순 | 등록순 | 조회순</div>
+    <div class="list">
+      <styled-card
+        v-for="(item, index) in shopList"
+        :key="index"
+        v-bind:name="item.name"
+        v-bind:src="item.imageSrc"
+        @click="movePage(item.id)"
+      >
+      </styled-card>
+    </div>
+    <div class="paging">Paging</div>
+  </div>
 </template>
 
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
+import StyledCard from "../components/StyledCard.vue";
+
+function getProductList() {
+  let store = useStore();
+  const list = computed(() => store.state.SHOPPING2.shopList);
+
+  return {
+    shopList: list,
+  };
+}
 export default {
   name: "ListPage",
-  components: {},
-  methods: {},
+  components: {
+    "styled-card": StyledCard,
+  },
+  setup() {
+    return {
+      ...getProductList(),
+    };
+  },
+  methods: {
+    movePage(param) {
+      this.$store.commit("SHOPPING2/setCurrentId", param);
+      this.$router.push("/vuejs_practice/detail/" + param);
+    },
+  },
   computed: {},
 };
 </script>
 
 <style scoped>
-.detail-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-  width: 100%;
-}
-
-.radio-box {
-  display: flex;
-}
-
-.detail-container {
-  display: flex;
-  height: 300px;
-  padding: 20px;
-}
-.product-box {
-  flex-shrink: 0;
-  flex-basis: 400px;
-}
-.product-box > img {
-  width: 100%;
-  height: 100%;
-}
-.intro-box {
-  flex: 9;
-  display: flex;
-  flex-direction: column;
-  padding: 0 1rem;
-}
-.item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid lightgray;
-  padding: 10px;
-  gap: 10px;
-}
-
-#name {
-  flex-basis: 80px;
-  flex-shrink: 0;
-  font-weight: 600;
-}
-#value {
-  flex: 1;
-  flex-shrink: 0;
-  display: flex;
-  gap: 10px;
-}
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
+  height: 100%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
-.intro {
+
+.filter {
+  background: gray;
+  width: 100%;
+}
+.list {
+  flex: 1;
+  flex-wrap: wrap;
+  max-height: 42rem;
+  overflow: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 3px;
 }
 </style>

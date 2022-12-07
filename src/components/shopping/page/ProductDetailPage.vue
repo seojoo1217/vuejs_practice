@@ -47,12 +47,21 @@
       </div>
     </div>
   </div>
+  <styled-modal
+    @click-button="handleClick"
+    v-bind:isOpen="isModalOpen"
+    title="장바구니"
+  >
+    장바구니에 담겼습니다. <br />
+    장바구니로 이동하시겠습니까?
+  </styled-modal>
 </template>
 
 <script>
 //import { computed } from "@vue/runtime-core";
 import { mapGetters } from "vuex";
 import StyledButton from "../components/StyledButton.vue";
+import StyledModal from "../components/StyledModal.vue";
 
 // async function getDetailPage() {
 //   const store = useStore();
@@ -69,12 +78,22 @@ import StyledButton from "../components/StyledButton.vue";
 // }
 export default {
   name: "product-detail",
+  data() {
+    return {
+      isModalOpen: false,
+    };
+  },
   components: {
     "styled-button": StyledButton, //Styled button 컴포넌트 생성
+    "styled-modal": StyledModal,
   },
   methods: {
     handleClick() {
       console.log("handleClick");
+      this.isModalOpen = !this.isModalOpen;
+    },
+    handleCloseModal() {
+      // this.isMod
     },
   },
   computed: {
