@@ -27,7 +27,7 @@ export default {
 <template>
   <div class="container">
     <div class="header">
-      <router-link to="/main">Vue.js 학습</router-link>
+      <router-link to="/">Vue.js 학습</router-link>
       <div class="menu">
         <!-- <router-link to="/home">HOME</router-link>
         <router-link to="/about">ABOUT</router-link>

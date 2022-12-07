@@ -23,7 +23,7 @@ const routes = [
     path: "/vuejs_practice",
     component: ContentsPage,
     children: [
-      { path: "main", name: "mainPage", component: MainPage },
+      { path: "", name: "mainPage", component: MainPage },
       {
         path: "detail/:id",
         name: "detailPage",
