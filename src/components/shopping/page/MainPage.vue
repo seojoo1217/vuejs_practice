@@ -43,6 +43,7 @@ export default {
       console.log(param);
     },
     movePage(param) {
+      this.$store.commit("SHOPPING2/setCurrentId", param);
       this.$router.push("/vuejs_practice/detail/" + param);
     },
   },

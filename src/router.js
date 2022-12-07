@@ -10,15 +10,6 @@ import { createWebHistory, createRouter } from "vue-router";
 import DetailPage from "./components/shopping/page/ProductDetailPage.vue";
 //
 const routes = [
-  // {
-  //   path: "/vuejs_practice",
-  //   component: BodyPage,
-  //   children: [
-  //     { path: "", name: "todoPage", component: TodoPage },
-  //     { path: "routes", name: "routesPage", component: RoutesPage },
-  //     { path: "watch", name: "watchPage", component: WatchPage },
-  //   ],
-  // },
   {
     path: "/vuejs_practice",
     component: ContentsPage,

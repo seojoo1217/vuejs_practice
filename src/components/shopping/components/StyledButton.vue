@@ -1,7 +1,7 @@
 <template>
-  <div @click="$emit('click-button')">
+  <button @click="$emit('click-button')">
     <slot> </slot>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style scoped>
-div {
+button {
   width: 100px;
   height: 25px;
 
@@ -27,7 +27,7 @@ div {
   border-radius: 3px;
 }
 
-div:hover {
+button:hover {
   background: rgb(80, 141, 255);
   color: white;
   font-weight: 600;
