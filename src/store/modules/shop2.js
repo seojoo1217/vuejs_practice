@@ -220,6 +220,28 @@ const state = {
         cnt: 233,
       },
     },
+    {
+      id: "shop21",
+      imageSrc: "https://picsum.photos/id/21/5000/3333",
+      code: "SALE",
+      name: "SALE 2022 5",
+      info: {
+        price: 6555,
+        color: ["pink", "red"],
+        cnt: 233,
+      },
+    },
+    {
+      id: "shop22",
+      imageSrc: "https://picsum.photos/id/22/5000/3333",
+      code: "SALE",
+      name: "SALE 2022 6",
+      info: {
+        price: 6555,
+        color: ["pink", "red"],
+        cnt: 233,
+      },
+    },
   ],
   categoryList: [
     { id: "sale", code: "SALE", name: "SALE" },

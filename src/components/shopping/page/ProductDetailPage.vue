@@ -37,7 +37,7 @@
         <div class="item">
           <div id="name">구매 수량</div>
           <div id="value">
-            <input type="number" defaultValue="1" max="5" />
+            <input type="number" defaultValue="1" max="5" min="1" />
           </div>
         </div>
         <div class="item">
@@ -113,12 +113,12 @@ export default {
   flex: 9;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 .item {
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   border: 1px solid lightgray;
   padding: 10px;
   gap: 10px;

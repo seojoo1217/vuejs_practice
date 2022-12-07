@@ -1,5 +1,5 @@
 <template>
-  <div class="container">Footer</div>
+  <div class="container">CopyRight 2022. seojooLee all rights reserved</div>
 </template>
 
 <script>
@@ -14,8 +14,13 @@ export default {
 
 <style scoped>
 .container {
-  width: 100%;
   max-height: 50px;
+  width: 100%;
   background-color: black;
+  display: flex;
+  color: lightgray;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 20px 0px;
 }
 </style>

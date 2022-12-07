@@ -35,21 +35,61 @@ export default {
         { id: "shoes", code: "S", name: "SHOES" },
       ],
       currentSelectId: "SALE",
+      currentSlideIndex: 0,
+      slideListLen: 0,
     };
+  },
+  mounted() {
+    this.autoSlide();
   },
   methods: {
     selectItem(param) {
       this.currentSelectId = param;
-      console.log(param);
     },
     movePage(param) {
       this.$store.commit("SHOPPING2/setCurrentId", param);
       this.$router.push("/vuejs_practice/detail/" + param);
     },
+    slideSaleList(param) {
+      let currentIndex = this.currentSlideIndex;
+      let slideLength = this.filterSlideLength;
+      console.log(slideLength);
+      if (param === "left") {
+        currentIndex--;
+      } else {
+        currentIndex++;
+      }
+
+      if (currentIndex === -1) {
+        currentIndex = 0;
+      } else if (currentIndex === slideLength) {
+        currentIndex = slideLength - 1;
+      }
+
+      this.currentSlideIndex = currentIndex;
+    },
+    autoSlide() {
+      setInterval(() => {
+        let currentIndex = this.currentSlideIndex;
+        let slideLength = this.filterSlideLength;
+        currentIndex++;
+        if (currentIndex === slideLength) {
+          currentIndex = 0;
+        }
+        this.currentSlideIndex = currentIndex;
+      }, 3000);
+    },
   },
   computed: {
     filterShopItem: function () {
       return this.shopList.filter((shop) => shop.code === this.currentSelectId);
+    },
+    filterSlideList: function () {
+      const list = this.shopList.filter((shop) => shop.code === "SALE");
+      return list;
+    },
+    filterSlideLength: function () {
+      return this.filterSlideList.length;
     },
   },
 };
@@ -57,11 +97,12 @@ export default {
 
 <template>
   <div class="container">
-    <!-- 광고 -->
     <div class="ad">
-      <div class="arrow left">&lt;</div>
-      <div class="ad-view"></div>
-      <div class="arrow right">&gt;</div>
+      <div class="arrow left" @click="slideSaleList('left')">&lt;</div>
+      <div class="ad-view">
+        <img :src="filterSlideList[currentSlideIndex].imageSrc" />
+      </div>
+      <div class="arrow right" @click="slideSaleList('right')">&gt;</div>
     </div>
     <div class="sale">
       <div class="left-menu">
@@ -118,9 +159,10 @@ export default {
 
 .sale {
   background: rgb(255 154 51);
-  height: 100%;
   display: flex;
   padding: 20px;
+  position: relative;
+  height: 25rem;
 }
 
 .arrow {
@@ -131,12 +173,21 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f7f7f740;
+  background: white;
   user-select: none;
   cursor: pointer;
 }
 .ad-view {
   flex: 1;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.ad-view > img {
+  width: 100%;
+  height: 100%;
 }
 
 .item {
@@ -160,5 +211,7 @@ export default {
   justify-content: flex-start;
   flex-wrap: wrap;
   padding: 10px;
+
+  overflow: auto;
 }
 </style>
