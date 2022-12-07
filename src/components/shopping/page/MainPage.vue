@@ -1,5 +1,17 @@
 <script>
+import { computed } from "@vue/runtime-core";
+import { useStore } from "vuex";
 import StyledCardVue from "../components/StyledCard.vue";
+
+function getProductList() {
+  const store = useStore();
+  const list = computed(() => store.state.SHOPPING2.shopList);
+
+  return {
+    shopList: list,
+  };
+}
+
 export default {
   name: "ShoppingPage",
   components: {
@@ -8,26 +20,13 @@ export default {
   props: {
     msg: String,
   },
+  setup() {
+    return {
+      ...getProductList(),
+    };
+  },
   data() {
     return {
-      shopList: [
-        { id: "shop1", code: "C", name: "2022 옷" },
-        { id: "shop2", code: "C", name: "2022 옷1" },
-        { id: "shop3", code: "C", name: "2022 옷2" },
-        { id: "shop4", code: "C", name: "2022 옷3" },
-        { id: "shop5", code: "P", name: "2022 바지" },
-        { id: "shop6", code: "P", name: "2022 바지1" },
-        { id: "shop7", code: "P", name: "2022 바지2" },
-        { id: "shop8", code: "P", name: "2022 바지3" },
-        { id: "shop9", code: "S", name: "2022 신발" },
-        { id: "shop10", code: "S", name: "2022 신발1" },
-        { id: "shop11", code: "S", name: "2022 신발2" },
-        { id: "shop12", code: "S", name: "2022 신발3" },
-        { id: "shop13", code: "A", name: "2022 악세사리" },
-        { id: "shop14", code: "A", name: "2022 악세사리1" },
-        { id: "shop15", code: "A", name: "2022 악세사리2" },
-        { id: "shop16", code: "A", name: "2022 악세사리3" },
-      ],
       categoryList: [
         { id: "sale", code: "SALE", name: "SALE" },
         { id: "shirt", code: "C", name: "SHIRT" },
@@ -35,7 +34,7 @@ export default {
         { id: "Acc", code: "A", name: "ACC" },
         { id: "shoes", code: "S", name: "SHOES" },
       ],
-      currentSelectId: "sale",
+      currentSelectId: "SALE",
     };
   },
   methods: {
@@ -58,11 +57,16 @@ export default {
 <template>
   <div class="container">
     <!-- 광고 -->
-    <div class="ad"></div>
+    <div class="ad">
+      <div class="arrow left">&lt;</div>
+      <div class="ad-view"></div>
+      <div class="arrow right">&gt;</div>
+    </div>
     <div class="sale">
       <div class="left-menu">
         <div
           class="item"
+          :class="{ active: category.code === currentSelectId }"
           v-for="(category, index) in categoryList"
           :key="index"
           @click="selectItem(category.code)"
@@ -76,6 +80,7 @@ export default {
           :key="index"
           v-bind:type="1"
           v-bind:name="shop.name"
+          v-bind:src="shop.imageSrc"
           @click="movePage(shop.id)"
         />
       </div>
@@ -93,6 +98,10 @@ export default {
 .ad {
   background: rgb(139, 139, 139);
   height: 20rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .left-menu {
@@ -107,10 +116,26 @@ export default {
 }
 
 .sale {
-  background: rgb(197, 237, 255);
+  background: rgb(255 154 51);
   height: 100%;
   display: flex;
   padding: 20px;
+}
+
+.arrow {
+  min-width: 100px;
+  font-size: 30px;
+  font-weight: 600;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f7f740;
+  user-select: none;
+  cursor: pointer;
+}
+.ad-view {
+  flex: 1;
 }
 
 .item {
@@ -122,6 +147,9 @@ export default {
   background: black;
   cursor: pointer;
   color: white;
+}
+.active {
+  background: #444444;
 }
 .sale-view {
   background: white;

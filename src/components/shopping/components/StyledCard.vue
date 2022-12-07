@@ -1,15 +1,18 @@
 <template>
-  <div class="card-container">{{ name }}</div>
+  <div class="card-container">
+    <img v-bind:src="src" loading="lazy" />
+    {{ name }}
+  </div>
 </template>
 
 <script>
 export default {
   name: "StyledCard",
-  props: ["name", "type"],
+  props: ["name", "type", "src"],
 };
 </script>
 
-<style>
+<style scoped>
 .card-container {
   width: 200px;
   height: 198px;
@@ -19,5 +22,17 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  cursor: pointer;
+  padding: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+.card-container:hover {
+  background: rgba(236, 236, 236, 0.596);
+}
+
+img {
+  width: 100%;
 }
 </style>

@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     handleMove() {
-      this.$router.push("/vuejs_practice/main");
+      this.$router.push("/vuejs_practice/");
     },
   },
 };
