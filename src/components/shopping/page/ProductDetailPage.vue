@@ -22,7 +22,13 @@
               v-for="(info, index) in detailPage.info.color"
               :key="index"
             >
-              <input :id="index" name="color" type="radio" />
+              <input
+                :id="index"
+                name="color"
+                type="radio"
+                :value="info"
+                v-model="option"
+              />
               <label :for="index" name="color">{{ info }}</label>
             </div>
           </div>
@@ -94,6 +100,7 @@ export default {
   data() {
     return {
       isModalOpen: false,
+      option: "",
     };
   },
   components: {
@@ -106,7 +113,10 @@ export default {
       this.isModalOpen = !this.isModalOpen;
 
       if (this.isModalOpen) {
-        this.$store.commit("SHOPPING2/addBasketList", id);
+        this.$store.commit("SHOPPING2/addBasketList", {
+          id,
+          color: this.option,
+        });
       } else {
         this.$router.push({ name: "basketPage" });
       }

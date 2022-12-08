@@ -6,7 +6,8 @@
           <img :src="item.imageSrc" alt="noImage" />
         </div>
         {{ item.name }}
-
+        <div class="right">색상 : {{ item.color }}</div>
+        <div>{{ Number(item.info.price).toLocaleString() }}원</div>
         <div class="right">
           <div><input type="checkbox" /></div>
           <div>X</div>
@@ -37,7 +38,6 @@ export default {
     getTotalPrice() {
       let sum = 0;
       this.basketList.map((item) => (sum += item.info.price));
-
       return sum;
     },
   },
@@ -60,13 +60,14 @@ export default {
   padding: 2rem 10px;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .list-container {
   display: flex;
   flex-direction: column;
-  padding: 0 30px;
+  padding: 10px 25px 30px 10px;
   gap: 10px;
 }
 .image {

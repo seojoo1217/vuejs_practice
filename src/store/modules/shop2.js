@@ -273,8 +273,13 @@ const mutations = {
     state.currentId = payload;
   },
   addBasketList(state, payload) {
-    const findItem = state.shopList.find((item) => item.id === payload);
-    state.basketList.push(findItem);
+    const findItem = state.shopList.find((item) => item.id === payload.id);
+    console.log(payload.color);
+    let data = {
+      ...findItem,
+      color: payload.color,
+    };
+    state.basketList.push(data);
   },
 };
 
