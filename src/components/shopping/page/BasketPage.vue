@@ -69,6 +69,8 @@ export default {
   flex-direction: column;
   padding: 10px 25px 30px 10px;
   gap: 10px;
+  height: 100%;
+  align-items: center;
 }
 .image {
   flex-shrink: 0;
@@ -87,7 +89,7 @@ export default {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: #efefef 3px 3px 3px;
-  max-width: 60rem;
+  width: 60rem;
   justify-content: space-between;
 }
 
