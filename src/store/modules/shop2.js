@@ -262,12 +262,19 @@ const getters = {
     const detailPage = shopList?.find((item) => item.id === currentId);
     return detailPage;
   },
+  getBasketList: (state) => {
+    return state.basketList;
+  },
 };
 
 const mutations = {
   //상태 변경시 전역 상태 update 해주는 setter
   setCurrentId(state, payload) {
     state.currentId = payload;
+  },
+  addBasketList(state, payload) {
+    const findItem = state.shopList.find((item) => item.id === payload);
+    state.basketList.push(findItem);
   },
 };
 

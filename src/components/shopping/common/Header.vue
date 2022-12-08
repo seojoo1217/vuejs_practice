@@ -76,7 +76,7 @@ export default {
   display: flex;
 }
 .active {
-  color: green;
+  color: black;
   font-weight: 600;
 }
 

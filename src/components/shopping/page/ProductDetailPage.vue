@@ -4,11 +4,12 @@
       <div class="product-box">
         <img v-bind:src="detailPage.imageSrc" alt="noImage" />
       </div>
+
       <div class="intro-box">
-        <div class="item">
-          <div id="name">상품 이름</div>
-          <div id="value">{{ detailPage?.name }}</div>
+        <div class="title">
+          {{ detailPage?.name }}
         </div>
+
         <div class="item">
           <div id="name">설명</div>
           <div id="value">상품 설명</div>
@@ -41,9 +42,21 @@
           </div>
         </div>
         <div class="item">
-          <styled-button @click-button="handleClick">즉시구매</styled-button>
-          <styled-button @click-button="handleClick">장바구니</styled-button>
+          <div id="name">배송</div>
+          <div id="value">무료배송</div>
         </div>
+        <div class="item">
+          <styled-button>즉시구매</styled-button>
+          <styled-button @click-button="handleClick(detailPage.id)"
+            >장바구니</styled-button
+          >
+        </div>
+      </div>
+    </div>
+    <div class="detail-box">
+      DETAIL
+      <div class="total">
+        <!-- <img v-bind:src="detailPage.imageSrc" alt="noImage" /> -->
       </div>
     </div>
   </div>
@@ -88,9 +101,15 @@ export default {
     "styled-modal": StyledModal,
   },
   methods: {
-    handleClick() {
+    handleClick(id) {
       console.log("handleClick");
       this.isModalOpen = !this.isModalOpen;
+
+      if (this.isModalOpen) {
+        this.$store.commit("SHOPPING2/addBasketList", id);
+      } else {
+        this.$router.push({ name: "basketPage" });
+      }
     },
     handleCloseModal() {
       // this.isMod
@@ -107,8 +126,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  flex-direction: column;
+
   height: 100%;
   width: 100%;
+}
+
+.detail-box {
+  border: 1px solid red;
 }
 
 .radio-box {
@@ -119,6 +144,7 @@ export default {
   display: flex;
   height: 300px;
   padding: 20px;
+  justify-content: center;
 }
 .product-box {
   flex-shrink: 0;
@@ -129,16 +155,15 @@ export default {
   height: 100%;
 }
 .intro-box {
-  flex: 9;
   display: flex;
   flex-direction: column;
   padding: 0 1rem;
+  flex-basis: 400px;
 }
 .item {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid lightgray;
   padding: 10px;
   gap: 10px;
 }
@@ -160,6 +185,7 @@ export default {
   justify-content: space-between;
   gap: 20px;
 }
-.intro {
+.title {
+  padding: 10px 0px;
 }
 </style>

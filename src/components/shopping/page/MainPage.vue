@@ -6,7 +6,6 @@ import StyledCardVue from "../components/StyledCard.vue";
 function getProductList() {
   const store = useStore();
   const list = computed(() => store.state.SHOPPING2.shopList);
-
   return {
     shopList: list,
   };
@@ -149,6 +148,7 @@ export default {
 .left-menu {
   display: flex;
   flex-direction: column;
+  background: #000;
 }
 .item-box {
   border: 1px solid red;
@@ -158,7 +158,7 @@ export default {
 }
 
 .sale {
-  background: rgb(255 154 51);
+  background: rgb(58 58 58);
   display: flex;
   padding: 20px;
   position: relative;

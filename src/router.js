@@ -9,7 +9,7 @@ import MainPage from "./components/shopping/page/MainPage.vue";
 import { createWebHistory, createRouter } from "vue-router";
 import DetailPage from "./components/shopping/page/ProductDetailPage.vue";
 import ListPage from "./components/shopping/page/ListPage.vue";
-
+import BasketPage from "./components/shopping/page/BasketPage.vue";
 //
 const routes = [
   {
@@ -26,6 +26,11 @@ const routes = [
         path: "list/:id",
         name: "listPage",
         component: ListPage,
+      },
+      {
+        path: "basket",
+        name: "basketPage",
+        component: BasketPage,
       },
     ],
   },
