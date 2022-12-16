@@ -18,6 +18,10 @@ export default {
         date: "",
         checked: false,
       },
+      statusTxt: {
+        complete: 0,
+        notYet: 0,
+      },
     };
   },
   methods: {
@@ -85,6 +89,17 @@ export default {
       });
       return this.separateList;
     },
+    statusInfo: function () {
+      let comp = 0;
+      let notyet = 0;
+      Object.keys(this.todoList).forEach((item) => {
+        item.checked ? comp++ : notyet++;
+      });
+      return {
+        comp,
+        notyet,
+      };
+    },
   },
 };
 </script>
@@ -92,7 +107,12 @@ export default {
 <template>
   <div class="container">
     <div class="todo-container">
-      <div class="header">TODO LIST</div>
+      <div class="header">
+        <div class="title">TODO LIST</div>
+        <div class="status">
+          완료 : {{ statusInfo.complete }} /미완료 : {{ statusInfo.notYet }}
+        </div>
+      </div>
       <div class="list-container">
         <div v-for="(type, index) in Object.keys(sortList)" :key="index">
           <div class="type-bar">
@@ -188,9 +208,13 @@ button {
 
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   color: white;
   padding: 10px;
+}
+.status {
+  color: white;
+  font-size: 3px;
 }
 </style>
