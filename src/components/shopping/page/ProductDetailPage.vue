@@ -53,6 +53,7 @@
         </div>
         <div class="item">
           <styled-button>즉시구매</styled-button>
+
           <styled-button @click-button="handleClick(detailPage.id)"
             >장바구니</styled-button
           >
@@ -108,6 +109,9 @@ export default {
     "styled-modal": StyledModal,
   },
   methods: {
+    handleMethod() {
+      console.log("");
+    },
     handleClick(id) {
       console.log("handleClick");
       this.isModalOpen = !this.isModalOpen;
@@ -143,7 +147,6 @@ export default {
 }
 
 .detail-box {
-  border: 1px solid red;
 }
 
 .radio-box {

@@ -1,19 +1,19 @@
 <template>
-  <!-- <DefaultContainer /> -->
-  <div class="pa-container">
+  <DefaultContainer />
+  <!-- <div class="pa-container">
     <ShoppingPageVue />
-  </div>
+  </div> -->
 </template>
 
 <script>
-//import DefaultContainer from "./components/DefaultContainer.vue";
-import ShoppingPageVue from "./components/shopping/page/ShoppingPage.vue";
+import DefaultContainer from "./components/DefaultContainer.vue";
+//import ShoppingPageVue from "./components/shopping/page/ShoppingPage.vue";
 //
 export default {
   name: "App",
   components: {
-    // DefaultContainer,
-    ShoppingPageVue,
+    DefaultContainer,
+    // ShoppingPageVue,
   },
 };
 </script>

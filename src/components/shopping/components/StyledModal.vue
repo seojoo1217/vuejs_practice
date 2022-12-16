@@ -3,7 +3,6 @@
     <div class="modal-container">
       <div class="title">{{ title }}</div>
       <slot> </slot>
-
       <div class="footer">
         <styled-button @click="$emit('click-button')">네</styled-button>
         <styled-button @click="$emit('click-button')">아니요</styled-button>

@@ -1,51 +1,89 @@
 <script>
-import { computed } from "@vue/runtime-core";
-import { useStore } from "vuex";
-
-function getTodoList() {
-  const store = useStore();
-  const list = computed(() => store.state.TODO.list);
-  //const getter = computed(() => store.getters["todoList"]);
-  return {
-    list: list,
-  };
-}
+import StyledListItem from "../shopping/components/StyledListItem.vue";
 
 export default {
-  name: "RoutesPage",
+  name: "todo-page",
   props: {
     msg: String,
   },
-  setup() {
-    return {
-      ...getTodoList(),
-    };
+  components: {
+    "styled-item": StyledListItem,
   },
   data() {
     return {
-      itemArr: [{ title: "test" }],
-      newtodo: "",
-      currentClick: "",
+      todoList: [],
+      form: {
+        id: "",
+        text: "",
+        date: "",
+        checked: false,
+      },
     };
   },
   methods: {
+    //TODO: store적용하여 state 관리해보기
     addItem() {
-      if (this.newtodo.length === 0) {
+      if (this.form.text.length === 0) {
         alert("작성된 문구가 없습니다.");
         return false;
       }
-      this.$store.commit("TODO/addItem", this.newtodo);
-      this.newtodo = "";
+      if (this.form.date.length === 0) {
+        alert("등록된 날짜가 없습니다.");
+        return false;
+      }
+      const id = new Date().getTime();
+      this.todoList.push({
+        title: this.form.text,
+        date: this.form.date,
+        checked: false,
+        id,
+      });
+      this.form.text = "";
     },
-    delItem(param) {
-      // let filterArr = this.itemArr.filter((item, index) => index !== param);
-      // console.log(filterArr);
-      // this.itemArr = filterArr;
-      this.$store.commit("TODO/removeItem", param);
+    delItem({ id }) {
+      let filterArr = this.todoList.filter((item) => item.id !== id);
+      this.todoList = filterArr;
     },
-    updateItem(param) {
-      console.log("param", param);
-      this.$store.commit("TODO/updateItem", param);
+    updateItem({ id, key, value }) {
+      console.log(id, key, value);
+      const findIndex = this.todoList.findIndex((item) => item.id === id);
+      this.todoList[findIndex][key] = value;
+    },
+  },
+  computed: {
+    separateList: function () {
+      const jsonArray = {
+        past: [],
+        current: [],
+        future: [],
+      };
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const today_date = today.getTime();
+
+      this.todoList.forEach((item) => {
+        const date = new Date(item.date);
+        date.setHours(0, 0, 0, 0);
+        const item_date = date.getTime();
+
+        let type =
+          item_date < today_date
+            ? "past"
+            : item_date === today_date
+            ? "current"
+            : "future";
+
+        jsonArray[type].push(item);
+      });
+      return jsonArray;
+    },
+    sortList: function () {
+      Object.keys(this.separateList).forEach((type) => {
+        this.separateList[type].sort(
+          (a, b) => new Date(a.date) - new Date(b.date)
+        );
+      });
+      return this.separateList;
     },
   },
 };
@@ -56,52 +94,46 @@ export default {
     <div class="todo-container">
       <div class="header">TODO LIST</div>
       <div class="list-container">
-        <div v-for="(item, index) in list" :key="index">
-          <div class="list-item">
-            <span class="cancel" @click="delItem(index)">X</span>
-            <input
-              type="text"
-              :value="item.title"
-              v-on:change="
-                updateItem({ index, key: 'title', value: $event.target.value })
-              "
-            />
-            <input
-              type="checkbox"
-              :checked="item.checked"
-              v-on:change="
-                updateItem({
-                  index,
-                  key: 'checked',
-                  value: $event.target.checked,
-                })
-              "
-            />
+        <div v-for="(type, index) in Object.keys(sortList)" :key="index">
+          <div class="type-bar">
+            {{
+              type === "past" ? "과거" : type === "current" ? "오늘" : "미래"
+            }}
           </div>
+          <styled-item
+            v-for="(item, item_index) in sortList[type]"
+            :key="item_index"
+            v-bind:data="item"
+            @update-item="updateItem"
+            @delete-item="delItem"
+          />
         </div>
-        <div v-if="itemArr.length === 0" class="nodata">데이터가 없습니다.</div>
       </div>
       <div class="footer">
         <input
           type="text"
           placeholder="입력하세요."
-          v-model="newtodo"
+          v-model="form.text"
           @keyup.enter="addItem"
         />
+        <input type="date" v-model="form.date" />
         <button @click="addItem">Add</button>
       </div>
     </div>
   </div>
 </template>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.container {
-}
-
 input[type="checkbox"] {
   width: 25px;
   height: 25px;
+}
+
+.type-bar {
+  width: 100%;
+  color: white;
+  background-color: #2e2d2d;
+  padding: 2px 0px;
 }
 .nodata {
   color: rgba(0, 0, 0, 0.651);
@@ -118,34 +150,12 @@ input[type="checkbox"] {
   padding: 10px;
 }
 
-.list-item {
-  height: 30px;
-  background: rgb(121, 121, 121);
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  gap: 20px;
-  padding: 5px 10px;
-  text-overflow: ellipsis;
-  white-space: pre;
-  color: white;
-}
-
-.cancel {
-  gap: 20px;
-  cursor: pointer;
-}
-
 .list-container {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-content: center;
-  padding: 10px;
   gap: 10px;
-  overflow: auto;
-  border-radius: 10px;
   background: white;
 }
 
@@ -170,7 +180,7 @@ button {
   max-width: 30rem;
   height: 20rem;
   padding: 0px 20px;
-  background: rgb(104, 104, 104);
+  background: #2e2d2d;
   display: flex;
   flex-direction: column;
   border-radius: 10px;
