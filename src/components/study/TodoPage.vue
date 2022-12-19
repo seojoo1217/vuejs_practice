@@ -1,13 +1,12 @@
 <script>
 import StyledListItem from "../shopping/components/StyledListItem.vue";
+import StyledModal from "../shopping/components/StyledModal.vue";
 
 export default {
   name: "todo-page",
-  props: {
-    msg: String,
-  },
   components: {
     "styled-item": StyledListItem,
+    "styled-modal": StyledModal,
   },
   data() {
     return {
@@ -18,13 +17,13 @@ export default {
         date: "",
         checked: false,
       },
-      statusTxt: {
-        complete: 0,
-        notYet: 0,
-      },
     };
   },
   methods: {
+    changeText() {
+      this.updateMessage = "안녕";
+    },
+
     //TODO: store적용하여 state 관리해보기
     addItem() {
       if (this.form.text.length === 0) {
@@ -49,9 +48,9 @@ export default {
       this.todoList = filterArr;
     },
     updateItem({ id, key, value }) {
-      console.log(id, key, value);
       const findIndex = this.todoList.findIndex((item) => item.id === id);
-      this.todoList[findIndex][key] = value;
+      const updateItem = { ...this.todoList[findIndex], [key]: value };
+      this.todoList[findIndex] = updateItem;
     },
   },
   computed: {
@@ -61,6 +60,7 @@ export default {
         current: [],
         future: [],
       };
+      //   let checkItem = 0;
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       const today_date = today.getTime();
@@ -69,6 +69,11 @@ export default {
         const date = new Date(item.date);
         date.setHours(0, 0, 0, 0);
         const item_date = date.getTime();
+
+        // if (item.checked) {
+        //   checkItem++;
+
+        // }
 
         let type =
           item_date < today_date
@@ -79,6 +84,7 @@ export default {
 
         jsonArray[type].push(item);
       });
+
       return jsonArray;
     },
     sortList: function () {
@@ -89,16 +95,33 @@ export default {
       });
       return this.separateList;
     },
-    statusInfo: function () {
-      let comp = 0;
-      let notyet = 0;
-      Object.keys(this.todoList).forEach((item) => {
-        item.checked ? comp++ : notyet++;
-      });
-      return {
-        comp,
-        notyet,
-      };
+    // statusInfo: function () {
+    //   let comp = 0;
+    //   let notyet = 0;
+    //   console.log("statusInfo", this.todoList);
+    //   Object.keys(this.todoList).forEach((item) => {
+    //     item.checked ? comp++ : notyet++;
+    //   });
+    //   return {
+    //     comp,
+    //     notyet,
+    //   };
+    // },
+    computedText: function () {
+      console.log(this.updateMessage);
+      return "test";
+    },
+  },
+  watch: {
+    todoList: {
+      handler(newVal, oldVal) {
+        console.log("function 변화", newVal, oldVal);
+      },
+      deep: true,
+    },
+    updateMessage(newVal, oldVal) {
+      console.log(newVal, oldVal);
+      this.newMessage = "변경O";
     },
   },
 };
@@ -109,9 +132,7 @@ export default {
     <div class="todo-container">
       <div class="header">
         <div class="title">TODO LIST</div>
-        <div class="status">
-          완료 : {{ statusInfo.complete }} /미완료 : {{ statusInfo.notYet }}
-        </div>
+        <div class="status">완료 : {{ compItems }} / 미완료 : {{}}</div>
       </div>
       <div class="list-container">
         <div v-for="(type, index) in Object.keys(sortList)" :key="index">
@@ -119,11 +140,14 @@ export default {
             {{
               type === "past" ? "과거" : type === "current" ? "오늘" : "미래"
             }}
+            <!-- 
+              
+             -->
           </div>
           <styled-item
             v-for="(item, item_index) in sortList[type]"
             :key="item_index"
-            v-bind:data="item"
+            v-bind:item="item"
             @update-item="updateItem"
             @delete-item="delItem"
           />
@@ -140,6 +164,13 @@ export default {
         <button @click="addItem">Add</button>
       </div>
     </div>
+    <styled-modal
+      @click-button="handleClick"
+      v-bind:isOpen="false"
+      title="삭제하시겠습니까?"
+    >
+      해당 item을 <b>삭제</b>하시겠습니까?
+    </styled-modal>
   </div>
 </template>
 

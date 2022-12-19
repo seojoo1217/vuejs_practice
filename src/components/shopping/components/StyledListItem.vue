@@ -3,10 +3,10 @@
     <div>
       <input
         type="date"
-        :value="data.date"
+        :value="item.date"
         @change="
           $emit('update-item', {
-            id: data.id,
+            id: item.id,
             key: 'date',
             value: $event.target.value,
           })
@@ -15,24 +15,34 @@
     </div>
     <input
       type="text"
-      :value="data.title"
+      :value="item.title"
       @change="
         $emit('update-item', {
-          id: data.id,
+          id: item.id,
           key: 'title',
           value: $event.target.value,
         })
       "
     />
-    <input type="checkbox" :checked="data.checked" />
-    <span class="cancel" @click="$emit('delete-item', { id: data.id })">X</span>
+    <input
+      type="checkbox"
+      :checked="item.checked"
+      @change="
+        $emit('update-item', {
+          id: item.id,
+          key: 'checked',
+          value: $event.target.checked,
+        })
+      "
+    />
+    <span class="cancel" @click="$emit('delete-item', { id: item.id })">X</span>
   </div>
 </template>
 
 <script>
 export default {
   name: "list-item",
-  props: ["data"],
+  props: ["item"],
 };
 </script>
 

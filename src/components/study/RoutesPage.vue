@@ -47,37 +47,22 @@ export default {
 <script>
 export default {
   name: "RoutesPage",
+  props: {
+    test: String,
+  },
   data() {
     return {
-      message: "첫 번째 뷰 인스턴스 Vue Instance",
+      message: "test Message",
     };
   },
   methods: {
     changeMessage() {
       this.message = "Happy NewYear";
     },
-    destroyInstance() {
-      this.$destroy();
-    },
   },
-  beforeCreate() {
-    console.log("beforeCreate");
-  },
-  created() {
-    console.log("created");
-  },
-  beforeMount() {
-    console.log("beforeMount");
-  },
-  mounted() {
-    console.log("mounted");
-  },
-  beforeUpdate() {
-    console.log("beforeUpdate");
-  },
-  updated() {
-    console.log("updated");
-  },
+  computed: {},
+  watch: {},
+
   // destroyed() {},
 };
 </script>
