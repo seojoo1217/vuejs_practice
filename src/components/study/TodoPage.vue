@@ -21,6 +21,8 @@ export default {
         date: "",
         checked: false,
       },
+      isOpen: false,
+      id: "",
     };
   },
   methods: {
@@ -48,8 +50,8 @@ export default {
       this.form.text = "";
     },
     delItem({ id }) {
-      let filterArr = this.todoList.filter((item) => item.id !== id);
-      this.todoList = filterArr;
+      this.isOpen = true;
+      this.id = id;
     },
     updateItem({ id, key, value }) {
       console.log(id, key, value);
@@ -59,6 +61,11 @@ export default {
     },
     updateFormItem({ name, value }) {
       this.form[name] = value;
+    },
+    handleClick() {
+      this.isOpen = false;
+      let filterArr = this.todoList.filter((item) => item.id !== this.id);
+      this.todoList = filterArr;
     },
   },
   computed: {
@@ -132,10 +139,10 @@ export default {
     </div>
     <styled-modal
       @click-button="handleClick"
-      v-bind:isOpen="false"
+      v-bind:isOpen="isOpen"
       title="삭제하시겠습니까?"
     >
-      해당 item을 <b>삭제</b>하시겠습니까?
+      해당 item을 삭제 하시겠습니까?
     </styled-modal>
   </div>
 </template>
