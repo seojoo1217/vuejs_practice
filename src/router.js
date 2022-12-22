@@ -1,4 +1,4 @@
-import TodoPage from "./components/study/TodoPage.vue";
+import TodoPage from "./components/study/todolist/TodoPage.vue";
 import RoutesPage from "./components/study/RoutesPage.vue";
 import WatchPage from "./components/study/WatchPage.vue";
 import BodyPage from "./components/page/BodyPage.vue";

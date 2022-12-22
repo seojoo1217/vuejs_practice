@@ -1,8 +1,8 @@
 <script>
-import StyledModal from "../shopping/components/StyledModal.vue";
-import Contents from "./components/Contents.vue";
-import Footer from "./components/Footer.vue";
-import Header from "./components/Header.vue";
+import StyledModal from "../../shopping/components/StyledModal.vue";
+import Contents from "./common/Contents.vue";
+import Footer from "./common/Footer.vue";
+import Header from "./common/Header.vue";
 
 export default {
   name: "todo-page",
