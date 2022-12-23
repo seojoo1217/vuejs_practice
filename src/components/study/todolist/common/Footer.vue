@@ -24,6 +24,9 @@
 export default {
   name: "todo-footer",
   props: ["form"],
+  methods: {
+    updateFormValue() {},
+  },
 };
 </script>
 

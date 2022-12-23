@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "shop-footer",
+  name: "shop-header",
   props: ["title", "todolist"],
   data() {
     return {

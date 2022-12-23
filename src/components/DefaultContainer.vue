@@ -1,5 +1,8 @@
 <script>
 import BodyPage from "./page/BodyPage.vue";
+// import ShoppingPageVue from "./shopping/page/ShoppingPage.vue";
+
+const path = "/vuejs_practice/";
 
 export default {
   components: { BodyPage },
@@ -10,14 +13,14 @@ export default {
   data() {
     return {
       indexArray: [
-        { path: "/vuejs_practice/", title: "TODOLIST" },
-        { path: "/vuejs_practice/watch", title: "Computed/Watch" },
-        { path: "/vuejs_practice/components", title: "Vue Components" },
-        { path: "/vuejs_practice/routes", title: "Vue Routes" },
-        { path: "/vuejs_practice/template", title: "Vue Template" },
-        { path: "/vuejs_practice/loader", title: "Vue Loader" },
-        { path: "/vuejs_practice/cli", title: "Vue CLI" },
-        { path: "/vuejs_practice/file", title: "Single File Component" },
+        { path: path + "", title: "TODOLIST" },
+        { path: path + "watch", title: "Computed/Watch" },
+        { path: path + "mall", title: "쇼핑몰 예제" },
+        { path: path + "routes", title: "Vue Routes" },
+        // { path: path + "template", title: "Vue Template" },
+        // { path: path + "loader", title: "Vue Loader" },
+        // { path: path + "cli", title: "Vue CLI" },
+        // { path: path + "file", title: "Single File Component" },
       ],
     };
   },

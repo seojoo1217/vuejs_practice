@@ -46,8 +46,9 @@ export default {
       this.currentSelectId = param;
     },
     movePage(param) {
+      console.log(param);
       this.$store.commit("SHOPPING2/setCurrentId", param);
-      this.$router.push("/vuejs_practice/detail/" + param);
+      this.$router.push("/vuejs_practice/mall/detail/" + param);
     },
     slideSaleList(param) {
       let currentIndex = this.currentSlideIndex;

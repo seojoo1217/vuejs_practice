@@ -122,7 +122,7 @@ input[type="checkbox"] {
   border-radius: 3px;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   gap: 20px;
   padding: 5px 10px;
   text-overflow: ellipsis;

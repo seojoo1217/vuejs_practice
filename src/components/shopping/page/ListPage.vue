@@ -41,7 +41,7 @@ export default {
   methods: {
     movePage(param) {
       this.$store.commit("SHOPPING2/setCurrentId", param);
-      this.$router.push("/vuejs_practice/detail/" + param);
+      this.$router.push("/vuejs_practice/mall/detail/" + param);
     },
   },
   computed: {},

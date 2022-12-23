@@ -48,10 +48,10 @@ export default {
   methods: {
     handleMove() {
       console.log(this.$route.params.id);
-      this.$router.push("/vuejs_practice/");
+      this.$router.push("/vuejs_practice/mall");
     },
     movePage(param) {
-      this.$router.push("/vuejs_practice/list/" + param);
+      this.$router.push("/vuejs_practice/mall/list/" + param);
     },
   },
 };
