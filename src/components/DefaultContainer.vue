@@ -2,7 +2,7 @@
 import BodyPage from "./page/BodyPage.vue";
 // import ShoppingPageVue from "./shopping/page/ShoppingPage.vue";
 
-const path = "/vuejs_practice/";
+const path = "/";
 
 export default {
   components: { BodyPage },
@@ -12,16 +12,7 @@ export default {
   },
   data() {
     return {
-      indexArray: [
-        { path: path + "", title: "TODOLIST" },
-        { path: path + "watch", title: "Computed/Watch" },
-        { path: path + "mall", title: "쇼핑몰 예제" },
-        { path: path + "routes", title: "Vue Routes" },
-        // { path: path + "template", title: "Vue Template" },
-        // { path: path + "loader", title: "Vue Loader" },
-        // { path: path + "cli", title: "Vue CLI" },
-        // { path: path + "file", title: "Single File Component" },
-      ],
+      indexArray: [{ path: path, title: "쇼핑몰 예제" }],
     };
   },
 };
@@ -31,11 +22,7 @@ export default {
   <div class="container">
     <div class="header">
       <router-link to="/">Vue.js 학습</router-link>
-      <div class="menu">
-        <!-- <router-link to="/home">HOME</router-link>
-        <router-link to="/about">ABOUT</router-link>
-        <router-link to="/info">INFO</router-link> -->
-      </div>
+      <div class="menu"></div>
     </div>
     <div class="second-container">
       <div class="sidebar">

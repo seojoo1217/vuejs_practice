@@ -1,4 +1,7 @@
+import axios from "axios";
+
 const state = {
+  isChange: false,
   shopList: [
     {
       id: "shop1",
@@ -276,7 +279,7 @@ const mutations = {
   setCurrentId(state, payload) {
     state.currentId = payload;
   },
-  addBasketList(state, payload) {
+  setBasketList(state, payload) {
     const findItem = state.shopList.find((item) => item.id === payload.id);
     let data = {
       ...findItem,
@@ -287,8 +290,13 @@ const mutations = {
 };
 
 const actions = {
-  addList({ commit }, name) {
-    commit("SHOPPING2", name);
+  addBasketList({ commit }, payload) {
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos/1") //장바구니 등록 api 요청했다 가정
+      .then(() => {
+        commit("setBasketList", payload); //요청 성공시 commit을 통해 state 변경
+      })
+      .then((json) => console.log(json));
   },
 };
 
