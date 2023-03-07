@@ -8,8 +8,8 @@
         <!-- <styled-button @click="$emit('click-button')">아니요</styled-button> -->
       </div>
     </div>
-  </div>
-</template>
+  </div>test
+</template> 
 
 <script>
 import StyledButton from "./StyledButton.vue";
