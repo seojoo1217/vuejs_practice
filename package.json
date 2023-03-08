@@ -8,10 +8,15 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy": "gh-pages -b dev -d public",
-    "commitlint" : "commitlint -e"
+    "commitlint": "commitlint -e"
   },
-  "commitlint" : {
-    "extends" : [
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
       "@commitlint/config-conventional"
     ]
   },
