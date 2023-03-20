@@ -15,7 +15,6 @@ export default {
 button {
   width: 100px;
   height: 25px;
-
   display: flex;
   justify-content: center;
   align-items: center;

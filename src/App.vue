@@ -1,19 +1,14 @@
 <template>
   <DefaultContainer />
-  <!-- <div class="pa-container">
-    <ShoppingPageVue />
-  </div> -->
 </template>
 
 <script>
 import DefaultContainer from "./components/DefaultContainer.vue";
-//import ShoppingPageVue from "./components/shopping/page/ShoppingPage.vue";
 //
 export default {
   name: "App",
   components: {
     DefaultContainer,
-    // ShoppingPageVue,
   },
 };
 </script>

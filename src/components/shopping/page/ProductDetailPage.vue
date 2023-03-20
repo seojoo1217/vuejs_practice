@@ -83,19 +83,6 @@ import { mapGetters } from "vuex";
 import StyledButton from "../components/StyledButton.vue";
 import StyledModal from "../components/StyledModal.vue";
 
-// async function getDetailPage() {
-//   const store = useStore();
-//   const list = await computed(() => store.state.SHOPPING2.shopList);
-//   console.log(list);
-//   const detailObj = await list?.find(
-//     (item) => item.id === this.$route.query.id
-//   );
-//   console.log(detailObj);
-
-//   return {
-//     detail: detailObj,
-//   };
-// }
 export default {
   name: "product-detail",
   data() {
@@ -109,24 +96,17 @@ export default {
     "styled-modal": StyledModal,
   },
   methods: {
-    handleMethod() {
-      console.log("");
-    },
     handleClick(id) {
-      console.log("handleClick");
       this.isModalOpen = !this.isModalOpen;
-
       if (this.isModalOpen) {
-        this.$store.commit("SHOPPING2/addBasketList", {
+        this.$store.dispatch("SHOPPING2/addBasketList", {
+          //장바구니 action 호출
           id,
           color: this.option,
         });
       } else {
         this.$router.push({ name: "basketPage" });
       }
-    },
-    handleCloseModal() {
-      // this.isMod
     },
   },
   computed: {
@@ -144,9 +124,6 @@ export default {
 
   height: 100%;
   width: 100%;
-}
-
-.detail-box {
 }
 
 .radio-box {
