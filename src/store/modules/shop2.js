@@ -299,7 +299,7 @@ const actions = {
       .then((json) => console.log(json));
   },
 };
-
+//sjlee 작업
 export default {
   namespaced: true,
   state,
